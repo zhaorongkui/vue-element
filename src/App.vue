@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <TestComponent/> -->
-    <Home/>
+    <Home />
   </div>
 </template>
 
