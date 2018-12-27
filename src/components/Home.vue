@@ -62,36 +62,12 @@
             v-for="(value, key, index) in navs"
             :key="index"
             :class="{ active: value.active }"
-            @click="changeNav(key)"
             :index="index+2"
+            @click="changeNav(key)"
           >
             <i class="el-icon-document"></i>
             <span slot="title">{{key}}</span>
           </el-menu-item>
-          <!--<el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
-          </el-menu-item>
-          <el-menu-item index="5">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航五</span>
-          </el-menu-item>
-          <el-menu-item index="6">
-            <i class="el-icon-document"></i>
-            <span slot="title">导航六</span>
-          </el-menu-item>
-          <el-menu-item index="7">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航七</span>
-          </el-menu-item>
-          <el-menu-item index="8">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航八</span>
-          </el-menu-item>
-          <el-menu-item index="9">
-            <i class="el-icon-document"></i>
-            <span slot="title">导航九</span>
-          </el-menu-item> -->
         </el-menu>
       </el-col>
       <!-- 页面中间内容部分 -->
@@ -100,9 +76,9 @@
           <li
             v-for="(tt,index) in tts"
             :key=index
-            v-if="tt.tital"
+            v-if="tt.title"
           >
-            <div><a :href="tt.link">{{tt.titel}}</a></div>
+            <div><a :href="tt.link">{{tt.title}}</a></div>
             <span>{{tt.ptime}}-{{tt.source}}</span>
           </li>
         </ul>
@@ -126,9 +102,18 @@ export default {
       console.log(key, keyPath);
     },
     changeNav: function(akey) {
+      console.log(akey);
       Reflect.ownKeys(this.navs).forEach((key, index) => {
         this.navs[key].active = akey === key && (this.tts = this.nav[key].data);
         console.log(index);
+        // if (this.navs[key].active === true) {
+        //   // this.tts = this.navs[data];
+        //   // console.log(this.navs[key]);
+        //   console.log(this.nav.key);
+        //   this.tts = this.nav[key].data;
+        // }
+        // this.tts = this.nav[key].data;
+        // console.log(this.navs[key].data);
       });
     }
   },
@@ -143,7 +128,7 @@ export default {
             active: key === "toutiao",
             data: this.navs[key]
           };
-          console.log(index);
+          // console.log(index);
         });
       });
   }
