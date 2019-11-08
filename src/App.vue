@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <!-- <TestComponent/> -->
-    <Home />
+    <TestComponent/>
+    <!-- <Home /> -->
   </div>
 </template>
 
 <script>
-// import TestComponent from "./components/test.vue";
-import Home from "./components/Home.vue";
+import TestComponent from "./components/test.vue";
+// import Home from "./components/Home.vue";
 
 export default {
   name: "app",
   components: {
-    // TestComponent,
-    Home
+    TestComponent,
+    // Home
   }
 };
 </script>

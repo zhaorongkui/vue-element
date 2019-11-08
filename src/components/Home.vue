@@ -103,6 +103,7 @@ export default {
     },
     changeNav: function(akey) {
       console.log(akey);
+      console.log(Reflect.ownKeys(this.navs));
       Reflect.ownKeys(this.navs).forEach((key, index) => {
         this.navs[key].active = akey === key && (this.tts = this.nav[key].data);
         console.log(index);
@@ -128,7 +129,7 @@ export default {
             active: key === "toutiao",
             data: this.navs[key]
           };
-          // console.log(index);
+          console.log(index);
         });
       });
   }
