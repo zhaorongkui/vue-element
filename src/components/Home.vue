@@ -99,8 +99,20 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
+      setTimeout(()=>{
+        this.$route.meta.keepAlive = true;
+      },1000)
+      
+      this.$router.go(-1);
     },
+
+
+
+
+
+
+
     changeNav: function(akey) {
       console.log(akey);
       console.log(Reflect.ownKeys(this.navs));

@@ -1,20 +1,24 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: rkz
+ * @Date: 2020-09-28 21:56:12
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-09-28 22:48:46
+-->
 <template>
   <div id="app">
-    <TestComponent/>
-    <!-- <Home /> -->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view> 
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>  
   </div>
 </template>
-
 <script>
-import TestComponent from "./components/test.vue";
-// import Home from "./components/Home.vue";
 
 export default {
   name: "app",
-  components: {
-    TestComponent,
-    // Home
-  }
+  components: {}
 };
 </script>
 
