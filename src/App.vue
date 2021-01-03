@@ -4,21 +4,37 @@
  * @Author: rkz
  * @Date: 2020-09-28 21:56:12
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-09-28 22:48:46
+ * @LastEditTime: 2020-09-29 23:21:01
 -->
 <template>
   <div id="app">
-    <keep-alive>
+    <!-- <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view> 
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>  
+    <router-view v-if="!$route.meta.keepAlive"></router-view>   -->
+    <keep-alive>
+      <router-view v-if="keepAlive"></router-view> 
+    </keep-alive>
+    <router-view v-show="!keepAlive"></router-view>  
   </div>
 </template>
 <script>
 
 export default {
   name: "app",
-  components: {}
+  components: {},
+  computed:{
+    keepAlive(){
+      return this.$store.state.keepAlive;
+    }
+  },
+  created(){
+    window.console.log(this.keepAlive,'主APP')
+  },
+  activated(){
+    console.log('app进来了！')
+    console.log(this.keepAlive,'App------active')
+  },
 };
 </script>
 

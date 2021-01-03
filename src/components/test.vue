@@ -9,12 +9,15 @@
       <el-button
         type="primary"
         @click="routerTest"
-      >路由测试</el-button>
+      >路由测试--{{keepAlive}}--</el-button>
       <el-button
         type="success"
         @click="add"
       >成功按钮--{{num}}</el-button>
-      <el-button type="info">信息按钮</el-button>
+      <el-button
+        type="info"
+        @click="remove"
+      >信息按钮</el-button>
       <el-button type="warning">警告按钮</el-button>
       <el-button type="danger">危险按钮</el-button>
     </el-row>
@@ -25,14 +28,21 @@
 export default {
   name: 'TestComponent',
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
-      num: 0
+      num: 0,
     }
   },
-  created: () => {
+  computed: {
+    keepAlive() {
+      return this.$store.state.keepAlive
+    },
+  },
+  created() {
+    console.log(this.keepAlive, 'test------created')
+
     // console.log("初始化！");
     var obj = { a: 1 }
     var copy = Object.assign({}, obj)
@@ -44,27 +54,36 @@ export default {
     console.log(obj) // { a: 1, b: 2, c: 3 }
     console.log(o1) // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
   },
+  activated() {
+    console.log('进来了！')
+    console.log(this.keepAlive, 'test------active')
+  },
   methods: {
     routerTest() {
-      if(this.num < 3){
+      if (this.num < 3) {
+        this.$store.commit('showeKeep', false)
         this.$router.push({
-                  path: '/home'
-                })
-      }else {
+          path: '/home',
+        })
+      } else {
+        this.$store.commit('showeKeep', true)
         this.$router.push({
-                  path: '/login'
-                })
+          path: '/login',
+        })
       }
     },
 
     add() {
       this.num++
     },
+    remove() {
+      this.num--
+    },
 
     test1() {
-      var p = new Promise(function(resolve, reject) {
+      var p = new Promise(function (resolve, reject) {
         let aa = '传过去了'
-        setTimeout(function() {
+        setTimeout(function () {
           console.log('执行完成'), resolve(aa)
         }, 2000)
       })
@@ -72,17 +91,17 @@ export default {
       return p
     },
     test2() {
-      var p2 = new Promise(function(resolve, reject) {
+      var p2 = new Promise(function (resolve, reject) {
         let bb = 'alert执行完了'
-        setTimeout(function() {
+        setTimeout(function () {
           alert('test2'), resolve(bb)
         }, 4000)
       })
       return p2
     },
     test3() {
-      var p3 = new Promise(function(resolve, reject) {
-        setTimeout(function() {
+      var p3 = new Promise(function (resolve, reject) {
+        setTimeout(function () {
           console.log('异步任务1完成')
           resolve('随便什么数据1')
         }, 1000)
@@ -90,8 +109,8 @@ export default {
       return p3
     },
     test4() {
-      var p = new Promise(function(resolve, reject) {
-        setTimeout(function() {
+      var p = new Promise(function (resolve, reject) {
+        setTimeout(function () {
           console.log('异步任务2完成')
           resolve('随便什么数据2')
         }, 2000)
@@ -99,8 +118,8 @@ export default {
       return p
     },
     test5() {
-      var p = new Promise(function(resolve, reject) {
-        setTimeout(function() {
+      var p = new Promise(function (resolve, reject) {
+        setTimeout(function () {
           console.log('异步任务3完成')
           resolve('随便什么数据3')
         }, 2000)
@@ -124,19 +143,19 @@ export default {
       //在data外面定义的属性和方法通过$options可以获取和调用
       this.$options.methods
         .test3()
-        .then(data => {
+        .then((data) => {
           console.log(data)
           return this.$options.methods.test4()
         })
-        .then(data => {
+        .then((data) => {
           console.log(data)
           return this.$options.methods.test5()
         })
-        .then(data => {
+        .then((data) => {
           console.log(data)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 <style>

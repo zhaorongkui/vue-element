@@ -97,14 +97,27 @@ export default {
       tts: []
     };
   },
+  computed:{
+    keepAlive(){
+      return this.$store.state.keepAlive;
+    }
+  },
+  created() {
+    console.log(this.keepAlive,'home------created')
+  },
+  activated(){
+    console.log('home进来了！')
+    console.log(this.keepAlive,'home------active')},
   methods: {
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
       setTimeout(()=>{
-        this.$route.meta.keepAlive = true;
+        this.$route.meta.keepAlive = false;
       },1000)
-      
-      this.$router.go(-1);
+      this.$store.commit('showeKeep',false)
+      this.$router.push({
+          path: '/test',
+        })
     },
 
 
