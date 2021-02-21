@@ -4,7 +4,7 @@
  * @Author: rkz
  * @Date: 2020-09-28 22:21:46
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-09-28 23:25:47
+ * @LastEditTime: 2021-02-18 19:46:11
  */
 import Vue from "vue";
 import VueRouter from "vue-router";
@@ -13,6 +13,7 @@ Vue.use(VueRouter);
 import home from "@/components/Home.vue";
 import test from "@/components/test.vue";
 import login from "@/components/login.vue";
+import List from "@/components/table.vue";
 const routes = [
     {
         path:"/home",
@@ -25,6 +26,10 @@ const routes = [
     {
         path: "/login",
         component: login
+    },
+    {
+        path: "/list",
+        component: List
     }
 ]
 

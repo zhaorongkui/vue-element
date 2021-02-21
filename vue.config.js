@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: rkz
+ * @Date: 2020-09-28 21:56:13
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-02-19 21:08:35
+ */
 module.exports = {
   baseUrl: process.env.NODE_ENV === "production" ? "/online/" : "/",
   //   lintOnSave：{ type:Boolean default:true } 问你是否使用eslint
@@ -13,16 +21,16 @@ module.exports = {
     host: "localhost",
     https: false, // https:{type:Boolean}
     open: true, //配置自动启动浏览器
-    // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
-    proxy: {
-      "/api": {
-        target: "<url>",
-        ws: true,
-        changeOrigin: true
-      },
-      "/foo": {
-        target: "<other_url>"
-      }
-    } // 配置多个代理
+    proxy: 'http://localhost:3000', // 配置跨域处理,只有一个代理
+    // proxy: {
+    //   "/api": {
+    //     target: "<url>",
+    //     ws: true,
+    //     changeOrigin: true
+    //   },
+    //   "/foo": {
+    //     target: "<other_url>"
+    //   }
+    // } // 配置多个代理
   }
 };
